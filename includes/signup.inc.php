@@ -1,11 +1,11 @@
 <?php
-
-error_reporting(E_ALL);
-ini_set('display_errors', '1');
 require('dbh.inc.php');
+
+
+
 if (isset($_POST['submit'])) {
     
-    require('dbh.inc.php');
+    include_once 'dbh.inc.php';
     
     $first = mysqli_real_escape_string($conn, $_POST['first']);
     $last  = mysqli_real_escape_string($conn, $_POST['last']);
@@ -13,7 +13,8 @@ if (isset($_POST['submit'])) {
     $uid   = mysqli_real_escape_string($conn, $_POST['uid']);
     $pwd   = mysqli_real_escape_string($conn, $_POST['pwd']);                                  
 
-print_r($_POST);
+print_r($_POST);    
+print_r($first);
     //Error handlers
     //Check for empty fields
     if (empty($first) || empty($last) || empty($email) || empty($uid) || empty($pwd))
@@ -32,29 +33,42 @@ print_r($_POST);
                 header("Location: ../signup.php?signup=email");
                 exit();
             } else{
-                $sql = "SELECT * FROM users WHERE user_uid='$uid'";
-                $result = mysqli_query($conn, $sql);
+                $sql         = "SELECT * FROM users WHERE user_uid='$uid'";
+                $result      = mysqli_query($conn, $sql);
                 $resultCheck = mysqli_num_rows($result);
 
                 if($resultCheck > 0){
                     header("Location: ../signup.php?signup=usertaken");
                     exit();
-                } else {print_r($_POST);
+                } else{ 
                     //Hashing the password
                     $hashedPwd = password_hash($pwd, PASSWORD_DEFAULT);
                     //Insert user into database
-                    $sql = "INSERT INTO users (user_frst, user_last, user_email, user_uid, user_pwd) VALUES ('$first', '$last', '$email', '$uid', '$hashedPwd');";
-                    echo "SQL Query to execute: $sql";
+                    $sqli = "INSERT INTO users (user_first, user_last, user_email, user_uid, user_pwd) VALUES ('$first', '$last', '$email', '$uid', '$hashedPwd');";
+                    echo "SQL Query to execute: $sqli";
                     print_r($_POST);
-                    mysqli_query($conn, $sql);print_r($_POST);
+                    mysqli_query($conn, $sqli);
                     header("Location: ../signup.php?signup=succes!");
                     exit();
                 }
             }
         }
     }                                                                       
-} else {
+}else {
     header("Location: ../signup.php");
     exit();
 }
 
+
+function debug_to_console( $data  ) {
+    $output = $data;
+    if ( is_array( $output  )  )
+        $output = implode( ',', $output);
+
+    echo "<script>console.log( 'Debug Objects: \" . $output . \"'  );</script>";
+}
+
+debug_to_console( "Test"  );
+
+error_reporting(E_ALL);
+ini_set('display_errors', '1');
