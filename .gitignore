@@ -5,9 +5,12 @@ npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 
+<<<<<<< HEAD
 
 #ignore backupfiles ~
 *~
+=======
+>>>>>>> 4da202f58e94094fb0e6d895298b37b54b698d57
 # Runtime data
 pids
 *.pid
