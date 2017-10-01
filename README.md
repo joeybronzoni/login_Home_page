@@ -1,6 +1,8 @@
 # login_Home_page
 simple login page using LAMP
 
+
+![App demo](https://github.com/josephskrzysowski/login_Home_page/blob/master/img/images/phpRegistrationForm.gif?raw=true)
 ![quick demo of working registration form with LAMP stack](http://login_Home_page/img/phpRegistrationForm.gif )
 
 
