@@ -1,7 +1,7 @@
 <?php
+error_reporting(E_ALL);
+ini_set('display_errors', '1');
 require('dbh.inc.php');
-
-
 
 if (isset($_POST['submit'])) {
     
@@ -12,7 +12,6 @@ if (isset($_POST['submit'])) {
     $email = mysqli_real_escape_string($conn, $_POST['email']);
     $uid   = mysqli_real_escape_string($conn, $_POST['uid']);
     $pwd   = mysqli_real_escape_string($conn, $_POST['pwd']);                                  
-
 print_r($_POST);    
 print_r($first);
     //Error handlers
@@ -27,7 +26,7 @@ print_r($first);
         {
             header("Location: ../signup.php?signup=invalid");
             exit();
-        }else{
+        } else {
             //check if email is valid
             if (!filter_var($email, FILTER_VALIDATE_EMAIL)){
                 header("Location: ../signup.php?signup=email");

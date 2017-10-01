@@ -5,6 +5,11 @@
   <section class="mainContainer">
     <div class="mainWrapper">
       <h2>Home</h2>
+       <?php
+       if (isset($_SESSION['u_id'])) {
+           echo 'You are Loggded In!';
+          }
+       ?>
     </div>
   </section>
   
