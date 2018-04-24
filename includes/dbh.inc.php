@@ -1,7 +1,7 @@
 <?php
 
-
-//$dbServername = "127.0.0.1";
+// The following variables should be replaced with your MySQL login information. 
+// $dbServername = "127.0.0.1";
 $dbServername = "localhost";
 $dbUsername   = "";
 $dbPassword   = "";
